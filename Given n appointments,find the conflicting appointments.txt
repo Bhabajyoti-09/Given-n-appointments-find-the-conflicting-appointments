@@ -1,0 +1,28 @@
+#include <bits/stdc++.h> 
+vector<int> findConflictingMeetings(vector<vector< int >> &meetings) {
+  // Finding the number of meetings.
+    int n = meetings.size();
+
+    vector < int > ans(n);
+
+    // Iterating through the meeting intervals.
+    for (int i = 0; i < n; i++) {
+        ans[i] = -1;
+
+        // Checking for conflicting meetings.
+        for (int j = 0; j < n; j++) {
+
+            // Checking if the two meetings are different.
+            if (i != j) {
+                
+                // Checking if the two meetings overlap.
+                if (min(meetings[i][1], meetings[j][1]) > max(meetings[i][0], meetings[j][0])) {
+                    ans[i] = j + 1;
+                    break;
+                }
+            }
+        }
+    }
+
+    return ans;	
+}
